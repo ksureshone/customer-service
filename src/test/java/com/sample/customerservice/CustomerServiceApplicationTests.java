@@ -9,6 +9,7 @@ import static org.hamcrest.CoreMatchers.is;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Collection;
 import java.util.Date;
 import static org.junit.Assert.*;
@@ -33,7 +34,9 @@ class CustomerServiceApplicationTests {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		Customer cust = new Customer(0L, "Mark", "Strange", dob, "suresh@company.com","1234567890", "111-11-1111");
+		Customer cust = new Customer(0L, "Mark", "Strange", dob.toInstant()
+				.atZone(ZoneId.systemDefault())
+				.toLocalDate(), "suresh@company.com","1234567890", "111-11-1111");
 		customerService.create(cust);
 		Collection<Customer> allCustomers = customerService.getAllCustomers();
 		assertTrue(allCustomers.size()== 1);

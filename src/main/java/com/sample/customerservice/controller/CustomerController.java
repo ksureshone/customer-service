@@ -42,6 +42,7 @@ public class CustomerController {
     		Customer customerEntity = customerService.create(customer);
     		return new ResponseEntity<Long>(customerEntity.getId(), HttpStatus.OK);
     	}catch(Exception e) {
+            e.printStackTrace();
     		log.error("Exception while saving customer ");
     	}
     	return new ResponseEntity<Long>(HttpStatus.INTERNAL_SERVER_ERROR);

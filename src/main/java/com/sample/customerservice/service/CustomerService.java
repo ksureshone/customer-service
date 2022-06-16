@@ -2,6 +2,7 @@ package com.sample.customerservice.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,9 @@ public class CustomerService {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			return Collections.singletonList(new Customer(101L, "Mark", "Strange", dob, "suresh@company.com","1234567890", "111-11-1111"));
+			return Collections.singletonList(new Customer(101L, "Mark", "Strange", dob.toInstant()
+					.atZone(ZoneId.systemDefault())
+					.toLocalDate(), "suresh@company.com","1234567890", "111-11-1111"));
 		}
 		return customers.values();
 	}

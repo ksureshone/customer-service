@@ -16,12 +16,13 @@ public class AgeValidator implements ConstraintValidator<IAgeAnnotation, LocalDa
     @Override
     public void initialize(IAgeAnnotation constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
+
     }
 
     @Override
     public boolean isValid(LocalDate dob, ConstraintValidatorContext context) {
         LocalDate now = LocalDate.now();
-        Period between = Period.between(now, dob);
+        Period between = Period.between(dob, now);
         int years = between.getYears();
         if(years >= 18){
             return true;

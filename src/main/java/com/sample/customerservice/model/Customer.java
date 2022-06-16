@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 //@Entity
@@ -31,12 +32,16 @@ public class Customer {
     private String lastName;
 
     @IAgeAnnotation(message = "Age should be greater than 18 yrs")
-    @DateTimeFormat( style= "dd/MM/yyyy")
-    private Date dob;
+   //@DateTimeFormat( style= "dd/MM/yyyy")
+    private LocalDate dob;
 
     @Email
     private String email;
 
+//    @NotNull
+//    @NotBlank
+//    @Size(max = 11)
+//    @Pattern( regexp= "\\?+\\d{3}\\d{10}")
     private String phoneNum;
     
     @Pattern( regexp = "^(?!000)\\d{3}-(?!00)\\d{2}-(?!0{4})\\d{4}$")
